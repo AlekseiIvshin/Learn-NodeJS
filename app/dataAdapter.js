@@ -10,5 +10,15 @@ function readFileSync(filePath) {
   return content;
 }
 
+function readFileAsync(filePath, onError, onSuccess) {
+  fs.readFile(filePath, 'utf-8', function(err, content) {
+    if (err) {
+       onError(err);
+    } else {
+      onSuccess(content);
+    }
+  });
+}
 
 module.exports.readFileSync = readFileSync;
+module.exports.readFileAsync = readFileAsync;
